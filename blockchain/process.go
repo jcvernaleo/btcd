@@ -134,6 +134,10 @@ func (b *BlockChain) ProcessBlock(block *dcrutil.Block, flags BehaviorFlags) (bo
 	dryRun := flags&BFDryRun == BFDryRun
 
 	blockHash := block.Hash()
+	if blockHash.String() == "0000000001d861d5fdb2e4e6d4495f90b434f3cb2d5d05f3ba77d770c0d1ebf8" {
+		str := fmt.Sprintf("blacklisted block hash %s", blockHash)
+		return false, false, ruleError(ErrBadCheckpoint, str)
+	}
 	log.Tracef("Processing block %v", blockHash)
 	currentTime := time.Now()
 	defer func() {
