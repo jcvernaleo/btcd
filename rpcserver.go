@@ -4565,13 +4565,13 @@ func handleGetWork(s *rpcServer, cmd interface{}, closeChan <-chan struct{}) (in
 	}
 
 	// No point in generating or accepting work before the chain is synced.
-	_, currentHeight := s.server.blockManager.chainState.Best()
+	/*_, currentHeight := s.server.blockManager.chainState.Best()
 	if currentHeight != 0 && !s.server.blockManager.IsCurrent() {
 		return nil, &dcrjson.RPCError{
 			Code:    dcrjson.ErrRPCClientInInitialDownload,
 			Message: "Decred is downloading blocks...",
 		}
-	}
+	}*/
 
 	c := cmd.(*dcrjson.GetWorkCmd)
 
